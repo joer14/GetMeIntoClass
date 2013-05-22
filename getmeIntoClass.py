@@ -42,20 +42,27 @@ while(test):
     closed = bar.find(alt="Closed")
     dattt = str(datetime.time(datetime.now())).replace(":", "").replace(".", "")
     #print len(closed)
+    # posts info to my web directory so I can check to see if the script is still running
+    dataFile = open("/afs/cats.ucsc.edu/users/f/jrowley/public_html/physics.html", "w")
+    dataFile.write("Still Closed as of %s\n" % str(datetime.now()))
+    # dataFile.write()
+    dataFile.close()
+        
     if closed is None:
         server.login(username,password)
-        print "WOOOOAH"
+        print "WOAHHH"
         server.sendmail(fromaddr, toaddrs, msg)
         server.sendmail(fromaddr, toaddrs, msg)
         server.sendmail(fromaddr, toaddrs2, msg2)
         server.sendmail(fromaddr, toaddrs3, msg2)
-        server.sendmail(fromaddr, toaddrs4, msg2)
+        server.sendmail(fromaddr, toaddrs4, msg3)
         server.sendmail(fromaddr, toaddrs3, msg2)
-        #name = "/Users/joe/Dropbox/Public/CLASS/test" + dattt + ".txt"
-        #dataFile = open(name, "w")
-        #dataFile.write("HIII")
-        #dataFile.close()
         test = False
+        dataFile = open("/afs/cats.ucsc.edu/users/f/jrowley/public_html/physics.html", "w")
+        dataFile.write("ITS OPEN %s \n" % str(datetime.time(datetime.now())))
+        # dataFile.write()
+        dataFile.close()
+    
     print closed
     time.sleep(60)
 
